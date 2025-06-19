@@ -1,0 +1,10 @@
+2025-06-14 17:30:05 - Message has been sent to ishanpathirana68@gmail.com successfully.
+2025-06-14 17:30:05 - Script finished.
+2025-06-15 14:30:01 - Current time is not 18:00. No emails sent.
+2025-06-15 14:30:01 - Script finished.
+2025-06-15 14:31:23 - Message has been sent to durshanidulakshani0605@gmail.com successfully.
+2025-06-15 14:31:23 - Script finished.
+2025-06-18 14:30:01 - No pending reservations found.
+2025-06-18 14:30:01 - Script finished.
+2025-06-19 14:30:01 - No pending reservations found.
+2025-06-19 14:30:01 - Script finished.

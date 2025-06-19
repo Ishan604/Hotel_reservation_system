@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Holiday Rentals | The Crown Stays</title>
+  <link rel="stylesheet" href="Style_files/booking_page_style.css?v=1.3" />
+  </head>
+<body>
+  <header class="hero-section">
+    <div class="navbar">
+      <div class="container nav-container">
+        <div class="logo">
+          <span>The</span><span class="highlight">Crown</span><span>Stays</span>
+        </div>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="aboutus.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="#">Apartment Room</a></li>
+          <li><a href="signin.php">Sign In</a></li>
+          <li><a href="registration.php">Log In</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="hero-content">
+      <h1>Holiday rentals all over the world</h1>
+      <p>Houses, cabins, apartments and more</p>
+    </div>
+  </header>
+
+  <section class="main-booking-section container">
+    <!-- form -->
+    <form id="bookingForm" class="main-booking-form" action="room_page.php" method="POST">
+      <!-- Location & Date Inputs (unchanged) -->
+      <div class="input-group location-input">
+          <img src="img/icons/bed.png" alt="Location Icon" class="input-icon" />
+          <input type="text" name="location" id="location" placeholder="Location" value="Galle" required />
+          <span class="clear-input">✖</span>
+      </div>
+      
+      <div class="input-group date-input">
+          <img src="img/icons/calender.png" alt="Calendar Icon" class="input-icon" />
+          <input type="date" name="checkIn" id="checkIn" value="2025-04-05" required />
+          <span>—</span>
+          <input type="date" name="checkOut" id="checkOut" value="2025-04-05" required />
+      </div>
+  
+      <!-- Interactive Dropdowns -->
+      <div class="dropdown-container">
+          <!-- Adults Dropdown -->
+          <div class="dropdown-box" id="adultsDropdown">
+              <div class="dropdown-label">Adults</div>
+              <div class="dropdown-value">1</div>
+              <div class="dropdown-options">
+                  <button type="button" class="decrement">−</button>
+                  <span class="count">1</span>
+                  <button type="button" class="increment">+</button>
+              </div>
+              <input type="hidden" name="adults" value="1">
+          </div>
+  
+          <!-- Children Dropdown (with red message) -->
+          <div class="dropdown-box" id="childrenDropdown">
+              <div class="dropdown-label">Children</div>
+              <div class="dropdown-value">0</div>
+              <div class="dropdown-options">
+                  <button type="button" class="decrement">−</button>
+                  <span class="count">0</span>
+                  <button type="button" class="increment">+</button>
+              </div>
+              <div class="dropdown-message">
+                  Note: Adults are 18+ years. Children are under 18.
+              </div>
+              <input type="hidden" name="children" value="0">
+          </div>
+  
+          <!-- Rooms Dropdown -->
+          <div class="dropdown-box" id="roomsDropdown">
+              <div class="dropdown-label">Rooms</div>
+              <div class="dropdown-value">1</div>
+              <div class="dropdown-options">
+                  <button type="button" class="decrement">−</button>
+                  <span class="count">1</span>
+                  <button type="button" class="increment">+</button>
+              </div>
+              <input type="hidden" name="rooms" value="1">
+          </div>
+      </div>
+  
+      <button type="submit" class="btn search-btn" name="search">Search</button>
+  </form>
+  
+  </section>  
+
+  <section class="apartment-room container">
+    <h2>Available Rooms</h2>
+    <div class="room-slider">
+      <div class="room-cards">
+        <!-- Standard Room -->
+        <a href="room-details.html?room=1" class="room-card" style="color: inherit; text-decoration: none;">
+          <img src="img/rooms/room1.jpg" alt="Room Image" />
+          <div class="room-info">
+            <div class="stars">★★★★★</div>
+            <h3>Standard Room</h3>
+            <p><strong>Max:</strong> 2 Persons</p>
+            <p><strong>Size:</strong> 30 m²</p>
+            <p><strong>View:</strong> Garden View</p>
+            <p><strong>Bed:</strong> 1 Single large bed</p>
+          </div>
+        </a>
+        <!-- Suite Room -->
+        <a href="room-details.html?room=2" class="room-card" style="color: inherit; text-decoration: none;">
+          <img src="img/rooms/room4.jpg" alt="Room Image" />
+          <div class="room-info">
+            <div class="stars">★★★★★</div>
+            <h3>Suite Room</h3>
+            <p><strong>Max:</strong> 4 Persons</p>
+            <p><strong>Size:</strong> 60 m²</p>
+            <p><strong>View:</strong> Sea View</p>
+            <p><strong>Bed:</strong> 1 Single large bed</p>
+          </div>
+        </a>
+        <!-- Deluxe Room -->
+        <a href="room-details.html?room=3" class="room-card" style="color: inherit; text-decoration: none;">
+          <img src="img/rooms/room5.jpg" alt="Room Image" />
+          <div class="room-info">
+            <div class="stars">★★★★★</div>
+            <h3>Deluxe Room</h3>
+            <p><strong>Max:</strong> 3 Persons</p>
+            <p><strong>Size:</strong> 50 m²</p>
+            <p><strong>View:</strong> City View</p>
+            <p><strong>Bed:</strong> 2 Single beds</p>
+          </div>
+        </a>
+        <!-- Another Deluxe Room -->
+        <a href="room-details.html?room=4" class="room-card" style="color: inherit; text-decoration: none;">
+          <img src="img/rooms/room-3.jpg" alt="Room Image" />
+          <div class="room-info">
+            <div class="stars">★★★★★</div>
+            <h3>Deluxe Room</h3>
+            <p><strong>Max:</strong> 3 Persons</p>
+            <p><strong>Size:</strong> 50 m²</p>
+            <p><strong>View:</strong> City View</p>
+            <p><strong>Bed:</strong> 1 King</p>
+          </div>
+        </a>
+      </div>
+      <button class="prev-btn">❮</button>
+      <button class="next-btn">❯</button>
+    </div>
+  </section>
+      
+  <!-- Guest's Responses -->
+  <section class="happy-clients container">
+    <h2>What Our Guests Say</h2>
+    <div class="client-cards">
+      <div class="client-card">
+        <img src="img/avatar/men6.jpg" alt="Client" />
+        <p>"Amazing stay! Clean rooms and great service."</p>
+        <h4>Dinuka Perera</h4>
+        <small>Traveler</small>
+      </div>
+      <div class="client-card">
+        <img src="img/avatar/girl1.jpg" alt="Client" />
+        <p>"A fantastic experience! The location was perfect, and the staff went above and beyond."</p>
+        <h4>Sanduni Fernando</h4>
+        <small>Guest</small>
+      </div>
+      <div class="client-card">
+        <img src="img/avatar/men2.jpg" alt="Client" />
+        <p>"Very comfortable stay. The amenities were top-notch and made our visit unforgettable."</p>
+        <h4>Ravindu Jayasinghe</h4>
+        <small>Tourist</small>
+      </div>
+      <div class="client-card">
+        <img src="img/avatar/men3.jpg" alt="Client" />
+        <p>"Had a great time! The view from the room was breathtaking, and the food was delicious."</p>
+        <h4>Tharindu Kumara</h4>
+        <small>Vacationer</small>
+      </div>
+      <div class="client-card">
+        <img src="img/avatar/men4.jpg" alt="Client" />
+        <p>"The best hotel stay I've had in years! Friendly staff and beautiful surroundings."</p>
+        <h4>Priya Wijesuriya</h4>
+        <small>Traveler</small>
+      </div>
+      <div class="client-card">
+        <img src="img/avatar/men5.jpg" alt="Client" />
+        <p>"Excellent service and clean facilities. I highly recommend this place to anyone visiting."</p>
+        <h4>Kavinda Perera</h4>
+        <small>Business Traveler</small>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-col">
+        <h3>Vacation Rental</h3>
+        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+        <a href="#" class="read-more">Read more &rarr;</a>
+      </div>
+      <div class="footer-col">
+        <h3>Services</h3>
+        <ul>
+          <li><a href="#">Map Direction</a></li>
+          <li><a href="#">Accommodation Services</a></li>
+          <li><a href="#">Great Experience</a></li>
+          <li><a href="#">Perfect central location</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Tag cloud</h3>
+        <div class="tag-cloud">
+          <span>APARTMENT</span><span>VACATION</span><span>RENTAL</span><span>HOUSE</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>Subscribe</h3>
+        <form class="subscribe-form">
+          <input type="email" placeholder="Enter email address" required />
+          <button type="submit" class="btn primary-btn subscribe-btn">&#9993;</button>
+        </form>
+        <div class="social-icons">
+          <a href="#"><img src="img/icons/twitter.png" alt="Twitter" /></a>
+          <a href="#"><img src="img/icons/fb.png" alt="Facebook" /></a>
+          <a href="#"><img src="img/icons/insta.png" alt="Instagram" /></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="booking.js?v=2.1"></script>
+  <script>
+    document.getElementById('bookingForm').addEventListener('submit', function (e) {
+    // Get the location entered by the user
+    const location = document.getElementById('location').value.trim().toLowerCase();
+
+    // Check location and change the form action URL accordingly
+    if (location === 'galle') {
+        this.action = 'room_page.php';  // Redirect to the Galle page
+    } else if (location === 'colombo') {
+        this.action = 'colombo_page.php';  // Redirect to the Colombo page
+    } else if (location === 'kandy') {
+        this.action = 'kandy_page.php';  // Redirect to the Kandy page
+    } else {
+        // If the location is not matched, keep the default action or handle as needed
+        this.action = 'room_page.php';  // Default page if no match
+    }
+});
+ 
+  </script>
+
+</body>
+</html>

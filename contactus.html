@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Us - The Crown Stays</title>
+  <!-- Animate.css for animations -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="Style_files/contactus.css"/>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar animate__animated animate__fadeInDown">
+    <div class="container nav-container">
+      <div class="logo">
+        <span>The</span><span class="highlight">Crown</span><span>Stays</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="aboutus.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="#">Apartment Room</a></li>
+        <li><a href="signin.php">Sign In</a></li>
+        <li><a href="reservation.php">Log In</a></li>
+      </ul>
+      <div class="mobile-menu-btn">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="contact-hero">
+    <div class="contact-hero-content animate__animated animate__fadeIn">
+      <h1>Contact Us</h1>
+      <p>We're here to help and answer any questions you might have</p>
+    </div>
+    <ul class="breadcrumb">
+      <li><a href="index.html">Home</a></li>
+      <li>Contact</li>
+    </ul>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="section-title animate__animated animate__fadeInUp">
+        <h2>Get In Touch</h2>
+        <p>Whether you have questions about bookings, services, or just want to say hello, our team is ready to assist you.</p>
+      </div>
+      
+      <div class="contact-container">
+        <div class="contact-info animate__animated animate__fadeInLeft">
+          <h3>Contact Information</h3>
+          
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="contact-text">
+                <h4>Our Address</h4>
+                <p>42, Humes Road,<br>Galle 80000, Sri Lanka</p>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-phone-alt"></i>
+              </div>
+              <div class="contact-text">
+                <h4>Phone Numbers</h4>
+                <p>
+                  <a href="tel:+94771234567">+94 77 123 4567</a><br>
+                  <a href="tel:+94771345678">+94 77 134 5678</a>
+                </p>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="contact-text">
+                <h4>Email Addresses</h4>
+                <p>
+                  <a href="mailto:info@thecrownstays.com">info@thecrownstays.com</a><br>
+                  <a href="mailto:reservations@thecrownstays.com">reservations@thecrownstays.com</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <h3>Connect With Us</h3>
+          <div class="social-contact">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        
+        <div class="contact-form animate__animated animate__fadeInRight">
+          <h3>Send Us a Message</h3>
+          <form id="contactForm" action="#" method="POST">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone">
+            </div>
+            
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" name="subject" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Your Message</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="map-section">
+    <div class="container animate__animated animate__fadeInUp">
+      <div class="section-title">
+        <h2>Our Location</h2>
+        <p>Find us in the heart of the city, conveniently located near major attractions and transportation hubs.</p>
+      </div>
+      
+      <div class="map-container">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126806.35579978539!2d80.12922005!3d6.05590095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae174f11b46c9ef%3A0x4e3fe6091d3141e4!2sGalle!5e0!3m2!1sen!2slk!4v1718798489987!5m2!1sen!2slk" 
+          width="600" 
+          height="450" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-title animate__animated animate__fadeInUp">
+        <h2>Frequently Asked Questions</h2>
+        <p>Quick answers to common questions about our services and policies.</p>
+      </div>
+      
+      <div class="faq-container">
+        <div class="faq-item animate__animated animate__fadeInUp" style="animation-delay: 0.1s;">
+          <div class="faq-question">
+            <span>What are your check-in and check-out times?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Our standard check-in time is 3:00 PM and check-out is at 11:00 AM. Early check-in and late check-out may be available upon request, subject to availability and additional charges.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+          <div class="faq-question">
+            <span>Do you offer airport transportation services?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Yes, we provide luxury airport transfers for our guests. Please arrange this service at least 48 hours prior to your arrival by contacting our concierge team.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">
+          <div class="faq-question">
+            <span>What is your cancellation policy?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Cancellations made more than 72 hours before arrival will receive a full refund. Cancellations within 72 hours will incur a one-night charge. Special rates and packages may have different cancellation policies.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+          <div class="faq-question">
+            <span>Are pets allowed in your apartments?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>We welcome pets in select apartments with prior approval. A non-refundable pet fee of $150 applies, and certain restrictions may apply based on size and breed.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item animate__animated animate__fadeInUp" style="animation-delay: 0.5s;">
+          <div class="faq-question">
+            <span>Do you have facilities for business meetings?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Yes, we offer fully equipped meeting rooms with audiovisual capabilities, high-speed internet, and catering services. Our business center is available 24/7 for all guests.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-col animate__animated">
+        <h3>Vacation Rental</h3>
+        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+        <a href="#" class="read-more">Read more &rarr;</a>
+      </div>
+      <div class="footer-col animate__animated">
+        <h3>Services</h3>
+        <ul>
+          <li><a href="#">Map Direction</a></li>
+          <li><a href="#">Accomodation Services</a></li>
+          <li><a href="#">Great Experience</a></li>
+          <li><a href="#">Perfect central location</a></li>
+        </ul>
+      </div>
+      <div class="footer-col animate__animated">
+        <h3>Tag cloud</h3>
+        <div class="tag-cloud">
+          <span>APARTMENT</span>
+          <span>HOME</span>
+          <span>VACATION</span>
+          <span>RENTAL</span>
+          <span>RENT</span>
+          <span>HOUSE</span>
+          <span>PLACE</span>
+          <span>DRINKS</span>
+        </div>
+      </div>
+      <div class="footer-col animate__animated">
+        <h3>Subscribe</h3>
+        <form class="subscribe-form" action="#" method="POST">
+          <input type="email" placeholder="Enter email address" required />
+          <button type="submit" class="btn primary-btn subscribe-btn">&#9993;</button>
+        </form>
+        <div class="social-icons">
+          <a href="#"><img src="img/icons/twitter.png" alt="Twitter" /></a>
+          <a href="#"><img src="img/icons/fb.png" alt="Facebook" /></a>
+          <a href="#"><img src="img/icons/insta.png" alt="Instagram" /></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="contactus.js"></script>
+</body>
+</html>

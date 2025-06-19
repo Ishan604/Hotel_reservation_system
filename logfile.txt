@@ -1,0 +1,23 @@
+2025-06-14 14:55:49 - Script started at 14:55
+2025-06-14 14:55:49 - Today's date is 2025-06-14
+2025-06-14 14:55:49 - Reservation with ID 42 has been deleted.
+2025-06-14 14:55:49 - Room with ID 35 has been deleted from the system.
+2025-06-14 14:55:50 - Message could not be sent. Mailer Error: Could not instantiate mail function.
+2025-06-14 14:55:50 - Script finished.
+2025-06-14 15:31:03 - Script started at 15:31
+2025-06-14 15:31:03 - Today's date is 2025-06-14
+2025-06-14 15:31:03 - No pending reservations without credit card details found for today.
+2025-06-14 15:31:03 - Script finished.
+2025-06-15 15:30:01 - Script started at 15:30
+2025-06-15 15:30:01 - Today's date is 2025-06-15
+2025-06-15 15:30:01 - Reservation with ID 44 has been deleted.
+2025-06-15 15:30:01 - Room with ID 37 has been deleted from the system.
+2025-06-15 15:30:06 - Cancellation email has been sent to durshanidulakshani0605@gmail.com successfully.
+2025-06-15 15:30:06 - Script finished.
+2025-06-18 15:30:00 - Script started at 15:30
+2025-06-18 15:30:00 - Today's date is 2025-06-18
+2025-06-18 15:30:00 - No pending reservations without credit card details found for today.
+2025-06-18 15:30:00 - Script finished.
+2025-06-19 15:30:58 - Connection failed: No connection could be made because the target machine actively refused it
+2025-06-19 15:30:59 - Script started at 15:30
+2025-06-19 15:30:59 - Today's date is 2025-06-19
