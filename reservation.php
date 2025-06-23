@@ -61,149 +61,143 @@ if (isset($_POST['reserve']))
 {
     if ($_SERVER["REQUEST_METHOD"] == "POST") 
     {
-        if(true) 
+
+        // Only validate card fields if user selects "Yes"
+        if (isset($_POST['add_credit_card']) && $_POST['add_credit_card'] === 'yes') 
         {
             if (!preg_match('/^\d{16}$/', $_POST['card_number'])) 
             {
                 $error_message = "Card number must be 16 digits.";
-            }
-
-            // Validate CVV (only digits, 3 digits)
+            } 
             elseif (!preg_match('/^\d{3}$/', $_POST['cvv'])) 
             {
                 $error_message = "CVV must be 3 digits.";
-            }
-
-            // Validate expiry (already covered by pattern, but reconfirm)
+            } 
             elseif (!preg_match('/^(0[1-9]|1[0-2])\/\d{2}$/', $_POST['expiry'])) 
             {
                 $error_message = "Expiry date must be in MM/YY format.";
             }
-            else  
+        }
+
+        if (empty($error_message)) 
+        {
+            // Validate required fields
+            $required = ['email', 'firstName', 'lastName', 'occupants', 'phone', 'country'];
+            foreach ($required as $field) 
             {
-                // Proceed with inserting into database
-                // Validate required fields
-                $required = ['email', 'firstName', 'lastName', 'occupants', 'phone', 'country'];
-                foreach ($required as $field) 
+                if (empty($_POST[$field])) 
                 {
-                    if (empty($_POST[$field])) 
-                    {
-                        $error_message = "Please fill in all required fields";
-                        break;
-                    }
+                    $error_message = "Please fill in all required fields";
+                    break;
                 }
+            }
 
-                if (empty($error_message)) 
+            if (empty($error_message)) 
+            {
+                $email = $_POST['email'];
+                $firstName = $_POST['firstName'];
+                $lastName = $_POST['lastName'];
+                $occupants = $_POST['occupants'];
+                $phone = $_POST['phone'];
+                $country = $_POST['country'];
+                $is_available = 0;
+
+                if ($conn) 
                 {
-                    $email = $_POST['email'];
-                    $firstName = $_POST['firstName'];
-                    $lastName = $_POST['lastName'];
-                    $occupants = $_POST['occupants'];
-                    $phone = $_POST['phone'];
-                    $country = $_POST['country'];
-                    $is_available = 0; // mark reserved
-
-                    if ($conn) 
+                    if (!isset($_SESSION['hotel_id'])) 
                     {
-                        if (!isset($_SESSION['hotel_id'])) 
+                        $error_message = "Hotel Id not set";
+                    } 
+                    else 
+                    {
+                        $hotelid = $_SESSION['hotel_id'];
+                        // echo "<script>alert('$hotelid');</script>";
+                    }
+
+                    $check_email_query = "SELECT customer_id FROM customer WHERE email='$email'";
+                    $result = mysqli_query($conn, $check_email_query);
+
+                    if (mysqli_num_rows($result) > 0) 
+                    {
+                        $user = mysqli_fetch_assoc($result);
+                        $customer_id = $user['customer_id'];
+
+                        $check_reservation = "SELECT reservation_id FROM reservations 
+                                              WHERE customer_id='$customer_id' 
+                                              AND check_in_date='$checkIn' 
+                                              AND check_out_date='$checkOut'";
+                        $res_result = mysqli_query($conn, $check_reservation);
+
+                        if (mysqli_num_rows($res_result) > 0) 
                         {
-                            $error_message = "Hotel Id not set";
-                        }
-                        else
-                        {
-                            $hotelid = $_SESSION['hotel_id'];
-                        }
-                        
-                        $check_email_query = "SELECT customer_id FROM customer WHERE email='$email'";
-                        $result = mysqli_query($conn, $check_email_query);
-
-                        if (mysqli_num_rows($result) > 0) 
-                        {
-                            $user = mysqli_fetch_assoc($result);
-                            $customer_id = $user['customer_id'];
-
-                            // Check if this customer already has a reservation for these dates
-                            $check_reservation = "SELECT reservation_id FROM reservations 
-                                                WHERE customer_id='$customer_id' 
-                                                AND check_in_date='$checkIn' 
-                                                AND check_out_date='$checkOut'";
-                            $res_result = mysqli_query($conn, $check_reservation);
-
-                            if (mysqli_num_rows($res_result) > 0) 
-                            {
-                                $error_message = "You already have a reservation for these dates.";
-                            } 
-                            else 
-                            {
-                                // Insert reservation
-                                $insert_reservation = "INSERT INTO reservations (customer_id, customer_email, check_in_date, check_out_date, occupants, status, branch) 
-                                                    VALUES ('$customer_id', '$email', '$checkIn', '$checkOut', '$occupants', 'pending', '$location')";
-                                
-                                if (mysqli_query($conn, $insert_reservation)) 
-                                {
-                                    $reservation_id = mysqli_insert_id($conn);
-
-                                    // Insert room details
-                                    $insert_room = "INSERT INTO rooms (customer_id, hotel_id, room_no, room_type, is_available, capacity)
-                                                    VALUES ('$customer_id', '$hotelid', '$roomno', '$roomtype', '$is_available', '$capacity')";
-                                    
-                                    if (mysqli_query($conn, $insert_room)) 
-                                    {
-                                        $success_message = "Reservation successful!";
-
-                                        // Insert credit card if provided
-                                        if (isset($_POST['add_credit_card']) && $_POST['add_credit_card'] === 'yes') 
-                                        {
-                                            $card_number = $_POST['card_number'];
-                                            $expiry = $_POST['expiry'];
-                                            $cvv = $_POST['cvv'];
-
-                                            if (!empty($card_number) && !empty($expiry) && !empty($cvv)) 
-                                            {
-                                                $insert_payment = "INSERT INTO credit_cards (customer_id, card_number, expiry, cvv) 
-                                                                VALUES ('$customer_id', '$card_number', '$expiry', '$cvv')";
-                                                
-                                                if (mysqli_query($conn, $insert_payment)) 
-                                                {
-                                                    $update_status = "UPDATE reservations SET status='confirmed' WHERE reservation_id='$reservation_id'";
-                                                    mysqli_query($conn, $update_status);
-                                                } 
-                                                else 
-                                                {
-                                                    $error_message = "Error in inserting payment details: " . mysqli_error($conn);
-                                                }
-                                            }
-                                        }
-
-                                        // Clear POST data to prevent resubmission
-                                        $_POST = array();
-                                    } 
-                                    else 
-                                    {
-                                        $error_message = "Error in inserting room details: " . mysqli_error($conn);
-                                    }
-                                } 
-                                else 
-                                {
-                                    $error_message = "Error in inserting reservation: " . mysqli_error($conn);
-                                }
-                            }
+                            $error_message = "You already have a reservation for these dates.";
                         } 
                         else 
                         {
-                            $error_message = "Email not found! Please register first.";
+                            $insert_reservation = "INSERT INTO reservations (customer_id, customer_email, check_in_date, check_out_date, occupants, status, branch) 
+                                                   VALUES ('$customer_id', '$email', '$checkIn', '$checkOut', '$occupants', 'pending', '$location')";
+                            if (mysqli_query($conn, $insert_reservation)) 
+                            {
+                                $reservation_id = mysqli_insert_id($conn);
+
+                                $insert_room = "INSERT INTO rooms (customer_id, hotel_id, room_no, room_type, is_available, capacity)
+                                                VALUES ('$customer_id', '$hotelid', '$roomno', '$roomtype', '$is_available', '$capacity')";
+                                
+                                if (mysqli_query($conn, $insert_room)) 
+                                {
+                                    $success_message = "Reservation successful!";
+
+                                    // If user chose to add credit card, save card details
+                                    if (isset($_POST['add_credit_card']) && $_POST['add_credit_card'] === 'yes') 
+                                    {
+                                        $card_number = $_POST['card_number'];
+                                        $expiry = $_POST['expiry'];
+                                        $cvv = $_POST['cvv'];
+
+                                        if (!empty($card_number) && !empty($expiry) && !empty($cvv)) 
+                                        {
+                                            $insert_payment = "INSERT INTO credit_cards (customer_id, card_number, expiry, cvv) 
+                                                               VALUES ('$customer_id', '$card_number', '$expiry', '$cvv')";
+                                            
+                                            if (mysqli_query($conn, $insert_payment)) 
+                                            {
+                                                $update_status = "UPDATE reservations SET status='confirmed' WHERE reservation_id='$reservation_id'";
+                                                mysqli_query($conn, $update_status);
+                                            } 
+                                            else 
+                                            {
+                                                $error_message = "Error in inserting payment details: " . mysqli_error($conn);
+                                            }
+                                        }
+                                    }
+
+                                    $_POST = array(); // Clear POST data
+                                } 
+                                else 
+                                {
+                                    $error_message = "Error in inserting room details: " . mysqli_error($conn);
+                                }
+                            } 
+                            else 
+                            {
+                                $error_message = "Error in inserting reservation: " . mysqli_error($conn);
+                            }
                         }
                     } 
                     else 
                     {
-                        $error_message = "Connection failed!";
+                        $error_message = "Email not found! Please register first.";
                     }
+                } 
+                else 
+                {
+                    $error_message = "Connection failed!";
                 }
-            } 
-
+            }
         }
     }
 }
+
 
 // Reset form submission flag when coming from another page
 if (!isset($_POST['reserve'])) 
@@ -212,7 +206,7 @@ if (!isset($_POST['reserve']))
 }
 // Set default room details if not in session
 $hotelname = "Hotel";
-$roomAddress = "42, Humes Road, 80000 Galle, Sri Lanka";
+$roomAddress = "Your Precious Reservation";
 $roomRating = "9.1 Superb · 181 reviews"; 
 ?>
 
